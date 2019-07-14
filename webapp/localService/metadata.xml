@@ -1,0 +1,98 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAPR_ETAG_KT_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="SEPM_I_BusinessPartner_EType" sap:label="EPM Demo: BuPa with External IDs" sap:content-version="1">
+				<Key><PropertyRef Name="BusinessPartner"/></Key><Property Name="BusinessPartner" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="CompanyName"
+					sap:label="Business Partner ID" sap:quickinfo="EPM: Business Partner ID" sap:creatable="false" sap:updatable="false"/><Property Name="BusinessPartnerRole" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Bus. Part. Role"
+					sap:quickinfo="EPM: Business Partner Role"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code"
+					sap:semantics="currency-code"/><Property Name="CompanyName" Type="Edm.String" MaxLength="80" sap:label="Company" sap:quickinfo="EPM: Company Name"/><Property Name="LegalForm" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Legal Form"
+					sap:quickinfo="EPM: Legal Form of Business Partner"/><Property Name="EmailAddress" Type="Edm.String" MaxLength="255" sap:label="Email" sap:quickinfo="EPM: E-Mail Address" sap:semantics="email"/><Property Name="FaxNumber" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Fax" sap:quickinfo="EPM: Fax Number"
+					sap:semantics="tel"/><Property Name="PhoneNumber" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Phone"
+					sap:quickinfo="EPM: Phone Number" sap:semantics="tel"/><Property Name="URL" Type="Edm.String" sap:label="URI" sap:quickinfo="EPM: Web Address"/><Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created At" sap:quickinfo="EPM: Created At"
+					sap:creatable="false" sap:updatable="false"/><Property Name="LastChangedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed At" sap:quickinfo="EPM: Changed At"
+					sap:creatable="false" sap:updatable="false"/><Property Name="BuPaApprovalStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Approval Status"
+					sap:quickinfo="EPM: Business Partner Approval Status"/><Property Name="CreatedBySystemUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/><Property Name="LastChangedBySystemUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/><Property Name="CityName" Type="Edm.String" MaxLength="40" sap:label="City" sap:quickinfo="EPM: City"/><Property Name="PostalCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code"
+					sap:quickinfo="EPM: Postal Code"/><Property Name="StreetName" Type="Edm.String" MaxLength="60" sap:label="Street" sap:quickinfo="EPM: Street"/><Property Name="HouseNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Building"
+					sap:quickinfo="EPM: Building"/><Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country"
+					sap:quickinfo="EPM: Country Code"/></EntityType>
+			<EntityType Name="SEPM_I_SalesOrderText_EType" sap:label="EPM Demo: Sales Order Text with External IDs" sap:content-version="1">
+				<Key><PropertyRef Name="SalesOrder"/><PropertyRef Name="Language"/></Key><Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Order ID"
+					sap:quickinfo="EPM: Sales Order Number" sap:creatable="false" sap:updatable="false"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="SalesOrderNote" Type="Edm.String" MaxLength="255" sap:label="Description"
+					sap:quickinfo="EPM: Text field for names and descriptions"/></EntityType>
+			<EntityType Name="zapr_sales_order_ktType" sap:label="Sales order CDS for EPM model" sap:content-version="1">
+				<Key><PropertyRef Name="SalesOrder"/></Key><Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="SalesOrder_Text"
+					sap:label="Sales Order ID" sap:quickinfo="EPM: Sales Order Number" sap:creatable="false" sap:updatable="false"/><Property Name="SalesOrder_Text" Type="Edm.String" MaxLength="255" sap:label="Description"
+					sap:quickinfo="EPM: Text field for names and descriptions" sap:creatable="false"/><Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created At" sap:quickinfo="EPM: Created At"
+					sap:creatable="false" sap:updatable="false"/><Property Name="LastChangedDateTime" Type="Edm.DateTimeOffset" Precision="7" ConcurrencyMode="Fixed" sap:label="Changed At"
+					sap:quickinfo="EPM: Changed At" sap:creatable="false" sap:updatable="false"/><Property Name="IsCreatedByBusinessPartner" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Value" sap:quickinfo="EPM: Boolean"
+					sap:creatable="false" sap:updatable="false"/><Property Name="IsLastChangedByBusinessPartner" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Value"
+					sap:quickinfo="EPM: Boolean" sap:creatable="false" sap:updatable="false"/><Property Name="Customer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="to_Customer/CompanyName"
+					sap:label="Customer" sap:quickinfo="EPM: Customer ID" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/><Property Name="TransactionCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code"
+					sap:creatable="false" sap:updatable="false" sap:semantics="currency-code"/><Property Name="GrossAmountInTransacCurrency" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency"
+					sap:label="Gross Amount" sap:quickinfo="EPM: Total Gross Amount" sap:creatable="false" sap:updatable="false"/><Property Name="NetAmountInTransactionCurrency" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency"
+					sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount" sap:creatable="false" sap:updatable="false"/><Property Name="TaxAmountInTransactionCurrency" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="TransactionCurrency"
+					sap:label="Tax Amount" sap:quickinfo="EPM: Total Tax Amount" sap:creatable="false" sap:updatable="false"/><Property Name="SalesOrderLifeCycleStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Lifecycle Status"
+					sap:quickinfo="EPM: Sales Order Lifecycle Status" sap:creatable="false" sap:updatable="false"/><Property Name="SalesOrderBillingStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Confirmation Status"
+					sap:quickinfo="EPM: Sales Order Confirmation Status" sap:creatable="false" sap:updatable="false"/><Property Name="SalesOrderDeliveryStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Ordering Status"
+					sap:quickinfo="EPM: Sales Order Ordering Status" sap:creatable="false" sap:updatable="false"/><Property Name="SalesOrderOverallStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Overall Status"
+					sap:quickinfo="EPM: Sales Order Overall Status" sap:creatable="false" sap:updatable="false"/><Property Name="Opportunity" Type="Edm.String" MaxLength="35" sap:display-format="UpperCase" sap:label="Opportunity ID"
+					sap:quickinfo="EPM: Opportunity ID for SoD IDoc processing" sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_Customer" Relationship="ZAPR_ETAG_KT_SRV.assoc_C4EF886464B616058D3BF0123EC075D8"
+					FromRole="FromRole_assoc_C4EF886464B616058D3BF0123EC075D8" ToRole="ToRole_assoc_C4EF886464B616058D3BF0123EC075D8"/><NavigationProperty Name="to_Text" Relationship="ZAPR_ETAG_KT_SRV.assoc_020763A24218790A503BD915E69711C3"
+					FromRole="FromRole_assoc_020763A24218790A503BD915E69711C3" ToRole="ToRole_assoc_020763A24218790A503BD915E69711C3"/></EntityType>
+			<Association Name="assoc_020763A24218790A503BD915E69711C3" sap:content-version="1"><End Type="ZAPR_ETAG_KT_SRV.zapr_sales_order_ktType" Multiplicity="1" Role="FromRole_assoc_020763A24218790A503BD915E69711C3"/><End Type="ZAPR_ETAG_KT_SRV.SEPM_I_SalesOrderText_EType" Multiplicity="*" Role="ToRole_assoc_020763A24218790A503BD915E69711C3"/></Association>
+			<Association Name="assoc_C4EF886464B616058D3BF0123EC075D8" sap:content-version="1"><End Type="ZAPR_ETAG_KT_SRV.zapr_sales_order_ktType" Multiplicity="1" Role="FromRole_assoc_C4EF886464B616058D3BF0123EC075D8"/><End Type="ZAPR_ETAG_KT_SRV.SEPM_I_BusinessPartner_EType" Multiplicity="0..1" Role="ToRole_assoc_C4EF886464B616058D3BF0123EC075D8"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_C4EF886464B616058D3BF0123EC075D8"><PropertyRef Name="BusinessPartner"/></Principal>
+					<Dependent Role="FromRole_assoc_C4EF886464B616058D3BF0123EC075D8"><PropertyRef Name="Customer"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZAPR_ETAG_KT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="SEPM_I_BusinessPartner_E" EntityType="ZAPR_ETAG_KT_SRV.SEPM_I_BusinessPartner_EType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="SEPM_I_SalesOrderText_E" EntityType="ZAPR_ETAG_KT_SRV.SEPM_I_SalesOrderText_EType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="zapr_sales_order_kt" EntityType="ZAPR_ETAG_KT_SRV.zapr_sales_order_ktType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_020763A24218790A503BD915E69711C3" Association="ZAPR_ETAG_KT_SRV.assoc_020763A24218790A503BD915E69711C3"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zapr_sales_order_kt" Role="FromRole_assoc_020763A24218790A503BD915E69711C3"/><End EntitySet="SEPM_I_SalesOrderText_E" Role="ToRole_assoc_020763A24218790A503BD915E69711C3"/></AssociationSet>
+				<AssociationSet Name="assoc_C4EF886464B616058D3BF0123EC075D8" Association="ZAPR_ETAG_KT_SRV.assoc_C4EF886464B616058D3BF0123EC075D8"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="zapr_sales_order_kt" Role="FromRole_assoc_C4EF886464B616058D3BF0123EC075D8"/><End EntitySet="SEPM_I_BusinessPartner_E" Role="ToRole_assoc_C4EF886464B616058D3BF0123EC075D8"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZAPR_ETAG_KT_SRV.zapr_sales_order_ktType/Customer">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="EPM Demo: BuPa with External IDs"/><PropertyValue Property="CollectionPath" String="SEPM_I_BusinessPartner_E"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Customer"/><PropertyValue Property="ValueListProperty" String="BusinessPartner"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CompanyName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZAPR_ETAG_KT_SRV.ZAPR_ETAG_KT_SRV_Entities/SEPM_I_BusinessPartner_E">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="URL"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>URL</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAPR_ETAG_KT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAPR_ETAG_KT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

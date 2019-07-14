@@ -1,0 +1,38 @@
+<mvc:View controllerName="demo.oft.zoft_etag_support.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:f="sap.ui.layout.form" xmlns:footerbar="sap.ushell.ui.footerbar">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<Title text="{SalesOrder}" level="H2"/>
+		</semantic:titleHeading>
+		<!-- Added content	start- Tirumala 07/05/19	-->
+		<semantic:content>
+			<f:SimpleForm title="Simple form">
+				<f:content>
+					<Label text="Text"></Label>
+					<Input value="{SalesOrder_Text}" id="idText"></Input>
+					<Label text="Gross Amount"></Label>
+					<Input value="{GrossAmountInTransacCurrency}" editable="false"></Input>
+					<Label text="Net Amount"></Label>
+					<Input value="{NetAmountInTransactionCurrency}" editable="false"></Input>
+					<Label text="Currency code"></Label>
+					<Input value="{TransactionCurrency}" editable="false"></Input>
+					<Button text="Update" press="onSave" icon="sap-icon://save"></Button>
+				</f:content>
+			</f:SimpleForm>
+		</semantic:content>
+		<!-- Added content	end	- Tirumala 07/05/19-->
+		<semantic:headerContent>
+			<ObjectNumber number="{ path: 'GrossAmountInTransacCurrency', formatter: '.formatter.numberUnit' }" unit="{TransactionCurrency}"/>
+		</semantic:headerContent>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press=".onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{objectView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:SemanticPage>
+</mvc:View>
