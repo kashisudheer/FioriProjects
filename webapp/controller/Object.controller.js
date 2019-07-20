@@ -57,20 +57,16 @@ sap.ui.define([
 			var that = this;
 			this._fireUpdate(sPath, oSalesOrder, ignoreChangedVersion)
 				.then(function () {
-					debugger;
 					sap.m.MessageToast.show("Update was successful..");
 				}).catch(function (oErr) {
-					debugger;
 					if (oErr === "412") {
 						that._openChoice();
 					}
 				});
 		},
 		_fireUpdate: function (sPath, oSalesOrder, ignoreChangedVersion) {
-			debugger;
 			var oDataModel = this.getView().getModel();
 			return new Promise(function (resolve, reject) {
-				debugger;
 				var mParameter = {
 					success: resolve,
 					error: function (oErr) {
